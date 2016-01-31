@@ -1,6 +1,6 @@
 /// <reference path='../types/gruntjs/gruntjs.d.ts' />
 
-import ScriptEngine = require('../node_modules/script-template/lib/index');
+var ScriptEngine = require('script-template/lib/index');
 var chalk:{cyan:(text:string)=>void} = require('chalk');
 
 interface IScriptTemplateTaskData {
@@ -36,7 +36,7 @@ function createTask(grunt:IGrunt):void {
                                 ? task.data.data(task.data)
                                 : task.data.data;
 
-            var engine:ScriptEngine = new ScriptEngine(template);
+            var engine = new ScriptEngine(template);
             var genSource:string = engine.run(data);
 
             grunt.file.write(task.data.dest, genSource);
